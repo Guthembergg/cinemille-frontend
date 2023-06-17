@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Button } from "@nextui-org/react";
 import ModaleAggiungiFilm from "./ModaleAggiuntaFilm";
 import "./style.scss";
+import ModaleCsvFilm from "./CsvFilmButton";
 const FilmPage = () => {
   const [film, setFilm] = useState();
   const roles = useSelector((state) => state.myProfile.roles);
@@ -37,13 +38,17 @@ const FilmPage = () => {
         }) && (
           <Row>
             {" "}
-            <Col>
-              {" "}
-              <ModaleAggiungiFilm />
+            <Col className="d-flex justify-content-center ">
+              <div className="me-5">
+                {" "}
+                <ModaleAggiungiFilm />
+              </div>
+
+              <ModaleCsvFilm />
             </Col>
           </Row>
         )}
-        {film && film.map((e) => <CardFilm film={e} />)}
+        {film && film.map((e, i) => <CardFilm key={i} film={e} />)}
       </Row>
     </Container>
   );

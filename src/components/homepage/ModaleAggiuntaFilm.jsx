@@ -1,34 +1,21 @@
 import React, { useState } from "react";
-import {
-  Form,
-  Button,
-  Modal,
-  Row,
-  Col,
-  Image,
-  Spinner,
-  OverlayTrigger,
-  Tooltip,
-} from "react-bootstrap";
+import { Form, Button, Modal, Spinner } from "react-bootstrap";
 import "@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "@hassanmojab/react-modern-calendar-datepicker";
 import Alert from "react-bootstrap/Alert";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { utils } from "react-modern-calendar-datepicker";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 
 function ModaleAggiungiFilm(props) {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState(
-    "Error while trying to post the dream"
-  );
+  const [message, setMessage] = useState("Error while trying to post the film");
 
   const [show, setShow] = useState(false);
 
   const myProfile = useSelector((state) => state.myProfile);
 
-  const dispatch = useDispatch();
   const handleChange = (property, value) => {
     setInfo({ ...info, [property]: value });
   };
@@ -79,11 +66,20 @@ function ModaleAggiungiFilm(props) {
     }
   };
   const [errorTitle, setErrorTitle] = useState(false);
-  const [errorDream, setErrorDream] = useState(false);
-
+  const [errorImmagine, setErrorImmagine] = useState(false);
   const handleSubmit = (e) => {
-    e.preventDefault();
-    PostFetch();
+    if (!info.titolo) {
+      setErrorTitle(true);
+    }
+
+    if (!info.immagine) {
+      setErrorImmagine(true);
+    }
+
+    if (info.immagine && info.titolo) {
+      e.preventDefault();
+      PostFetch();
+    }
   };
   const defaultValue = {
     year: utils().getToday().year,
@@ -158,7 +154,19 @@ function ModaleAggiungiFilm(props) {
               placeholder="Inserisci URL immagine"
               value={info?.immagine}
               onChange={(e) => handleChange("immagine", e.target.value)}
-            />
+            />{" "}
+            {errorImmagine && (
+              <div className="d-flex justify-content-center">
+                {" "}
+                <Alert
+                  className=" pb-3 text-danger w-100 mt-3"
+                  key="danger"
+                  variant="danger"
+                >
+                  Inserisci un immagine
+                </Alert>
+              </div>
+            )}
             <Modal.Footer>
               <Button
                 className="buttonModalSubmit"

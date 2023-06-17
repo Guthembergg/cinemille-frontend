@@ -4,7 +4,7 @@ import CardFilm from "./FilmCard";
 import { useSelector } from "react-redux";
 import { Button } from "@nextui-org/react";
 import ModaleAggiungiFilm from "./ModaleAggiuntaFilm";
-
+import "./style.scss";
 const FilmPage = () => {
   const [film, setFilm] = useState();
   const roles = useSelector((state) => state.myProfile.roles);

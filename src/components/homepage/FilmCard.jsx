@@ -7,7 +7,7 @@ import { Col, Row } from "react-bootstrap";
 import CancellaFIlm from "./CancellaFilm";
 function CardFilm(props) {
   const [modalShow, setModalShow] = useState(false);
-  const roles = useSelector((state) => state.myProfile.roles);
+  const roles = useSelector((state) => state.myProfile?.roles);
   return (
     <Card style={{ width: "18rem" }} className="m-3 p-0 position-relative">
       <Card.Img

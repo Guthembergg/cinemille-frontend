@@ -45,19 +45,21 @@ function NavbarCustom() {
                   className=" d-flex justify-content-end me-5 align-items-center containerNavLink flex-grow-1 pe-3"
                 >
                   <Col lg={1} xl={4}></Col>
-                  <Nav.Link></Nav.Link>
-                  <Nav.Link href="/film" className="fontExpand">
+                  <Nav.Link href="/film" className="fontExpand fs-5 me-4">
                     Film
                   </Nav.Link>
-                  <Nav.Link href="/sale" className="fontExpand">
+                  <Nav.Link href="/sale" className="fontExpand fs-5 me-4">
                     Sale
                   </Nav.Link>{" "}
-                  <Nav.Link href="/programmazioni" className="fontExpand">
+                  <Nav.Link
+                    href="/programmazioni"
+                    className="fontExpand fs-5 me-4"
+                  >
                     Programmazioni
                   </Nav.Link>
                   {username ? (
                     <NavDropdown
-                      className="fontExpand"
+                      className="fontExpand fs-5 me-4"
                       title={
                         <>
                           Benvenuto,
@@ -68,26 +70,26 @@ function NavbarCustom() {
                       }
                     >
                       {" "}
-                      {roles.some((e) => {
+                      {roles?.some((e) => {
                         if (e.id === 1) {
                           return true;
                         } else {
                           return false;
                         }
                       }) && (
-                        <Nav.Link className="text-primary text-center fs-4">
+                        <Nav.Link className="text-primary text-center fs-5">
                           Admin
                         </Nav.Link>
                       )}
                       <Nav.Link
                         onClick={handleClick}
-                        className="text-danger text-center fs-4"
+                        className="text-danger text-center fs-5"
                       >
                         Log out
                       </Nav.Link>
                     </NavDropdown>
                   ) : (
-                    <Nav.Link href="/login" className="fontExpand">
+                    <Nav.Link href="/login" className="fontExpand fs-5 ">
                       Login
                     </Nav.Link>
                   )}

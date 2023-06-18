@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import CardProgrammazione from "./CardProgrammazione";
-import { Alert, Container, Row, Spinner } from "react-bootstrap";
+import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
 import { Input, useInput } from "@nextui-org/react";
+import { useSelector } from "react-redux";
+import ModaleAggiungiProgrammazione from "./ModaleProgrammazioniAggiunta";
+import CsvProgramma from "./CsvProgrammazioniButton";
 
 const Programmazione = () => {
+  const roles = useSelector((state) => state?.myProfile?.roles);
   const [programmazione, setProgrammazione] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -47,6 +51,19 @@ const Programmazione = () => {
             onChange={(e) => setFilter(e.target.value)}
             clearable
           />
+          {roles?.some((e) => {
+            if (e.id === 1) {
+              return true;
+            } else {
+              return false;
+            }
+          }) && (
+            <div className="ms-5 d-flex ">
+              <ModaleAggiungiProgrammazione />
+
+              <CsvProgramma />
+            </div>
+          )}
         </div>
         {isLoading && <Spinner animation="border" variant="secondary" />}
         {isError && (

@@ -33,7 +33,7 @@ function ModaleAggiungiFilm(props) {
     setLoading(true);
     try {
       if (selectedDay.month > 9) {
-        zeroD = "";
+        zeroM = "";
       }
       if (selectedDay.day > 9) {
         zeroD = "";

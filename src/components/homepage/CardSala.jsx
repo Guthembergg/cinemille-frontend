@@ -10,7 +10,7 @@ function CardSala(props) {
           <strong className="fs-4 m-2">
             {props.sala.nome} {"  "}
             {props.sala.tipo === "IMAX" && (
-              <span class="badge text-bg-danger"> {props.sala.tipo}</span>
+              <span className="badge text-bg-danger"> {props.sala.tipo}</span>
             )}
           </strong>
         </Card.Title>

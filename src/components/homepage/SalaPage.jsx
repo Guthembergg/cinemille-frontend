@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
 import CardSala from "./CardSala";
 import { useSelector } from "react-redux";
 import CsvSala from "./CsvSala";
@@ -7,16 +7,24 @@ import CsvSala from "./CsvSala";
 const Sale = () => {
   const [sala, setSala] = useState();
   const roles = useSelector((state) => state?.myProfile?.roles);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const getSala = async () => {
     try {
+      setIsLoading(true);
       const response = await fetch("http://localhost:8080/sala");
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         setSala(data);
+        setIsLoading(false);
       } else {
+        setIsError(true);
+        setIsLoading(false);
       }
     } catch (error) {
-      console.log(error);
+      setIsError(true);
+      setIsLoading(false);
     }
   };
 
@@ -41,9 +49,16 @@ const Sale = () => {
             </div>
           </Col>
         </Row>
-      )}
+      )}{" "}
       <Row className="d-flex justify-content-center p-3">
-        {sala && sala.map((e) => <CardSala sala={e} />)}
+        {" "}
+        {isError && (
+          <Alert variant="danger">Errore nel caricamento della pagina</Alert>
+        )}
+        {isLoading && (
+          <Spinner animation="border" className="m-auto" variant="secondary" />
+        )}
+        {sala && sala.map((e, i) => <CardSala key={`sala-${i}`} sala={e} />)}
       </Row>
     </Container>
   );

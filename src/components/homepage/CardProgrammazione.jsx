@@ -2,9 +2,12 @@ import { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import FilmModale from "./FilmModale";
 import { Image } from "@nextui-org/react";
+import { useSelector } from "react-redux";
+import CancellaProgramma from "./CancellaProgrammazione";
 
 const CardProgrammazione = (props) => {
   const [modalShow, setModalShow] = useState(false);
+  const roles = useSelector((state) => state?.myProfile?.roles);
 
   return (
     <>
@@ -20,18 +23,35 @@ const CardProgrammazione = (props) => {
           <Col xs={1} xl={2}></Col>
           <div className="d-flex flex-column  my-1">
             <h4>
-              <strong>{props.spettacolo.film.titolo}</strong>
-            </h4>
+              <strong className="">{props.spettacolo.film.titolo} </strong>{" "}
+            </h4>{" "}
             <h6 className="mb-3">
               <strong>Data uscita: </strong> {props.spettacolo.film.datauscita}
             </h6>{" "}
-            <Button
-              variant="primary"
-              className="mb-3"
-              onClick={() => setModalShow(true)}
-            >
-              Scheda del film
-            </Button>
+            <div className="d-flex">
+              <div>
+                <Button
+                  variant="primary"
+                  className="mb-3"
+                  onClick={() => setModalShow(true)}
+                >
+                  Scheda del film
+                </Button>{" "}
+              </div>
+              <div>
+                {roles?.some((e) => {
+                  if (e.id === 1) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                }) && (
+                  <div className="ms-5 d-flex ">
+                    <CancellaProgramma />
+                  </div>
+                )}
+              </div>
+            </div>
             <h4>
               <strong>Sala: </strong> {props.spettacolo.sala.nome}
             </h4>{" "}

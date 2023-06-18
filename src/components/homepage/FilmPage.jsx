@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Alert, Col, Container, Row, Spinner } from "react-bootstrap";
 import CardFilm from "./FilmCard";
 import { useSelector } from "react-redux";
 import { Button, Input, useInput } from "@nextui-org/react";
@@ -11,16 +11,24 @@ const FilmPage = () => {
   const [filter, setFilter] = useState("");
   const [film, setFilm] = useState();
   const roles = useSelector((state) => state?.myProfile?.roles);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const getFilm = async () => {
     try {
+      setIsLoading(true);
       const response = await fetch("http://localhost:8080/film");
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         setFilm(data);
+        setIsLoading(false);
       } else {
+        setIsError(true);
+        setIsLoading(false);
       }
     } catch (error) {
-      console.log(error);
+      setIsError(true);
+      setIsLoading(false);
     }
   };
 
@@ -63,6 +71,13 @@ const FilmPage = () => {
             clearable
           />
         </div>
+        {isError && (
+          <Alert variant="danger">Errore nel caricamento della pagina</Alert>
+        )}
+
+        {isLoading && (
+          <Spinner animation="border" className="m-auto" variant="secondary" />
+        )}
         {film &&
           film
             .filter(

@@ -65,11 +65,18 @@ const Programmazione = () => {
             </div>
           )}
         </div>
-        {isLoading && <Spinner animation="border" variant="secondary" />}
+
         {isError && (
           <Alert variant="danger">Errore nel caricamento della pagina</Alert>
         )}
         <Row xs={1} xl={2} className="m-0">
+          {isLoading && (
+            <Spinner
+              animation="border"
+              className="m-auto"
+              variant="secondary"
+            />
+          )}
           {programmazione &&
             programmazione
               .filter(

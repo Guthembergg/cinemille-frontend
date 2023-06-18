@@ -4,11 +4,7 @@ import cinema from "../../assets/cinema.avif";
 function CardSala(props) {
   return (
     <Card style={{ width: "18rem" }} className="m-3 p-0">
-      <Card.Img
-        style={{ height: "160px", width: "100%" }}
-        variant="top"
-        src={cinema}
-      />
+      <Card.Img style={{ height: "220px" }} variant="top" src={cinema} />
       <Card.Body className="d-flex flex-column justify-content-between">
         <Card.Title>
           <strong className="fs-4 m-2">

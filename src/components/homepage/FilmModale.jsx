@@ -23,21 +23,16 @@ function FilmModal(props) {
   }, []);
 
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
+    <Modal {...props} size="lg" centered>
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Scheda</Modal.Title>
+        <Modal.Title className="ms-5">Scheda Film </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Row className="cardProgrammazione d-flex justify-content-around py-2">
           <Col>
-            <div>
+            <div className="ms-5">
               <img
-                style={{ height: "200px" }}
+                style={{ height: "300px" }}
                 src={film?.immagine}
                 alt="placeholder"
               />
@@ -46,7 +41,8 @@ function FilmModal(props) {
           <Col className="d-flex flex-column ">
             <h4>
               <strong>{film?.titolo}</strong>
-            </h4>
+            </h4>{" "}
+            <h4 className="mt-4">{film?.datauscita}</h4>
           </Col>
         </Row>
       </Modal.Body>

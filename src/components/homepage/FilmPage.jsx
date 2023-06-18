@@ -49,7 +49,7 @@ const FilmPage = () => {
             </Col>
           </Row>
         )}
-        <div className="d-flex justify-content-start">
+        <div className="d-flex justify-content-start ms-3">
           <Input
             shadow={false}
             onClearClick={reset}

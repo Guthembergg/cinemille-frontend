@@ -11,7 +11,7 @@ function CardFilm(props) {
   return (
     <Card style={{ width: "18rem" }} className="m-3 p-0 position-relative">
       <Card.Img
-        style={{ height: "160px", width: "100%" }}
+        style={{ width: "100%" }}
         variant="top"
         src={props?.film?.immagine}
       />

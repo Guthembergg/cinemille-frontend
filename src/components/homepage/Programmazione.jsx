@@ -33,8 +33,8 @@ const Programmazione = () => {
 
   return (
     <>
-      <Container className=" flex-wrap py-3 px-1 bg-light">
-        <div className="d-flex justify-content-start">
+      <Container className=" flex-wrap py-3 px-1 ">
+        <div className="d-flex justify-content-start mt-3 mb-3 ms-3">
           <Input
             shadow={false}
             onClearClick={reset}

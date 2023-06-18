@@ -23,7 +23,7 @@ function NavbarCustom() {
   return (
     <>
       {["lg"].map((expand) => (
-        <Navbar key={expand} bg="light" expand={expand} className="mb-3 nav">
+        <Navbar key={expand} bg="light" expand={expand} className="mb-3 nav ">
           <Container fluid>
             <Navbar.Brand href="#" className="fw-semibold d-flex">
               <p className="fs-3 ms-4">CineMille</p>

@@ -9,16 +9,16 @@ const CardProgrammazione = (props) => {
   return (
     <>
       <Row className="d-flex justify-content-center py-2 bg-light mb-4 ">
-        <div className="d-flex">
-          <Col xs={4}>
+        <div className="d-flex ">
+          <div className="d-flex justify-content-center ms-5">
             <Image
-              style={{ height: "400px", width: "300px" }}
+              className="cardPImage"
               src={props.spettacolo.film.immagine}
               alt="film"
             />
-          </Col>
-          <Col xs={2}></Col>
-          <div className="d-flex flex-column align-items-start my-1">
+          </div>
+          <Col xs={1} xl={2}></Col>
+          <div className="d-flex flex-column  my-1">
             <h4>
               <strong>{props.spettacolo.film.titolo}</strong>
             </h4>

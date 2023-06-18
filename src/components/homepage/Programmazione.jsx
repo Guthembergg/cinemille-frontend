@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CardProgrammazione from "./CardProgrammazione";
-import { Alert, Container, Spinner } from "react-bootstrap";
+import { Alert, Container, Row, Spinner } from "react-bootstrap";
 import { Input, useInput } from "@nextui-org/react";
 
 const Programmazione = () => {
@@ -33,8 +33,8 @@ const Programmazione = () => {
 
   return (
     <>
-      <Container className=" flex-wrap py-3 px-1 ">
-        <div className="d-flex justify-content-start mt-3 mb-3 ms-3">
+      <div className="  ">
+        <div className="d-flex justify-content-start mt-3 mb-3 ms-5">
           <Input
             shadow={false}
             onClearClick={reset}
@@ -52,16 +52,20 @@ const Programmazione = () => {
         {isError && (
           <Alert variant="danger">Errore nel caricamento della pagina</Alert>
         )}
-        {programmazione &&
-          programmazione
-            .filter(
-              (e) =>
-                e.film?.titolo?.toLowerCase().includes(filter.toLowerCase()) ||
-                e.data.includes(filter) ||
-                e.sala.nome.toLowerCase().includes(filter.toLowerCase())
-            )
-            .map((e) => <CardProgrammazione key={e.id} spettacolo={e} />)}
-      </Container>
+        <Row xs={1} xl={2} className="m-0">
+          {programmazione &&
+            programmazione
+              .filter(
+                (e) =>
+                  e.film?.titolo
+                    ?.toLowerCase()
+                    .includes(filter.toLowerCase()) ||
+                  e.data.includes(filter) ||
+                  e.sala.nome.toLowerCase().includes(filter.toLowerCase())
+              )
+              .map((e) => <CardProgrammazione key={e.id} spettacolo={e} />)}
+        </Row>
+      </div>
     </>
   );
 };

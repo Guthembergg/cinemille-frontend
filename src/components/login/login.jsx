@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Input } from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import "./style.scss";
@@ -88,7 +88,9 @@ class EntryPage extends Component {
         return (
           <form className="login">
             <Row className="d-flex "></Row>
-
+            <a className="fs-3 ms-2 fw-bold " href="/">
+              CineMille
+            </a>
             <fieldset>
               <legend className="ps-3 purple fw-bold">Create Account</legend>
               <ul>
@@ -177,7 +179,9 @@ class EntryPage extends Component {
       case "logIn":
         return (
           <form className="login">
-            <Row className="d-flex "></Row>
+            <a className="fs-3 ms-2 fw-bold " href="/">
+              CineMille
+            </a>
 
             <fieldset>
               <legend className="ps-3 purple fw-bold">Login</legend>

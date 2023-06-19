@@ -31,19 +31,31 @@ function ModaleAggiungiProgrammazione(props) {
     setErroSala(false);
     setErroOrario(false);
     setErrorDay(false);
+    setError(false);
   };
   const handleShow = () => setShow(true);
 
   const GetFilm = async () => {
+    let zeroD = "0";
+    let zeroM = "0";
+    if (selectedDay.month > 9) {
+      zeroM = "";
+    }
+    if (selectedDay.day > 9) {
+      zeroD = "";
+    }
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:8080/film/disponibile`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${myProfile?.accessToken}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `http://localhost:8080/film/disponibile/${selectedDay.year}-${zeroM}${selectedDay.month}-${zeroD}${selectedDay.day}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${myProfile?.accessToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (response.ok) {
         setError(false);
         setLoading(false);
@@ -63,15 +75,26 @@ function ModaleAggiungiProgrammazione(props) {
   };
 
   const GetSala = async () => {
+    let zeroD = "0";
+    let zeroM = "0";
+    if (selectedDay.month > 9) {
+      zeroM = "";
+    }
+    if (selectedDay.day > 9) {
+      zeroD = "";
+    }
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:8080/sala`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${myProfile?.accessToken}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `http://localhost:8080/sala/data/${selectedDay.year}-${zeroM}${selectedDay.month}-${zeroD}${selectedDay.day}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${myProfile?.accessToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (response.ok) {
         setError(false);
         setLoading(false);
@@ -178,8 +201,10 @@ function ModaleAggiungiProgrammazione(props) {
 
   useEffect(() => {
     GetFilm();
+  }, [selectedDay]);
+  useEffect(() => {
     GetSala();
-  }, []);
+  }, [selectedDay]);
 
   return (
     <>

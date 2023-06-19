@@ -4,4 +4,5 @@ Facendo il login comE ADMIN username: mario password: qwerty è possibile aggiun
 
 Link back-end: https://github.com/Guthembergg/CineMille_BackEnd
 
-Consiglio per visionare al meglio, eseguire il login come admin (user: mario pswd: qwerty) e caricare i file csv forniti tramite bottone (prima i film ed in seguito le programazioni) con il back-end attivo ovviamente
+Consiglio per visionare al meglio, eseguire il login come admin (user: mario pswd: qwerty) e caricare i file csv forniti tramite bottone (prima i film ed in seguito le programazioni) con il back-end attivo ovviamente.
+Quando si aggiunge una programmazione manualmente prestare attenzione che la data di programmazionione sia minimo dopo una settimana e non oltre tre settimane la data di uscita del film !

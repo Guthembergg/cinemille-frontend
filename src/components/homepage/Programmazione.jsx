@@ -61,7 +61,7 @@ const Programmazione = () => {
           return false;
         }
       }) && (
-        <div className="ms-5 d-flex justify-content-center mb-3">
+        <div className="ms-5 d-flex justify-content-center mb-sm-3">
           <ModaleAggiungiProgrammazione />
 
           <CsvProgramma />

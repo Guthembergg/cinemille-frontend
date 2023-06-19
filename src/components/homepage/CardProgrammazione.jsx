@@ -47,7 +47,7 @@ const CardProgrammazione = (props) => {
                   }
                 }) && (
                   <div className="ms-5 d-flex ">
-                    <CancellaProgramma />
+                    <CancellaProgramma id={props.spettacolo.id} />
                   </div>
                 )}
               </div>

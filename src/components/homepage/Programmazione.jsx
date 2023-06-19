@@ -37,8 +37,9 @@ const Programmazione = () => {
 
   return (
     <>
-      <div className="  ">
-        <div className="d-flex justify-content-start mt-3 mb-3 ms-5">
+      <div className="d-flex justify-content-start mt-5 mb-3 ms-5">
+        <div className="ms-3">
+          {" "}
           <Input
             shadow={false}
             onClearClick={reset}
@@ -51,45 +52,39 @@ const Programmazione = () => {
             onChange={(e) => setFilter(e.target.value)}
             clearable
           />
-          {roles?.some((e) => {
-            if (e.id === 1) {
-              return true;
-            } else {
-              return false;
-            }
-          }) && (
-            <div className="ms-5 d-flex ">
-              <ModaleAggiungiProgrammazione />
-
-              <CsvProgramma />
-            </div>
-          )}
         </div>
-
-        {isError && (
-          <Alert variant="danger">Errore nel caricamento della pagina</Alert>
-        )}
-        <Row xs={1} xl={2} className="m-0">
-          {isLoading && (
-            <Spinner
-              animation="border"
-              className="m-auto"
-              variant="secondary"
-            />
-          )}
-          {programmazione &&
-            programmazione
-              .filter(
-                (e) =>
-                  e.film?.titolo
-                    ?.toLowerCase()
-                    .includes(filter.toLowerCase()) ||
-                  e.data.includes(filter) ||
-                  e.sala.nome.toLowerCase().includes(filter.toLowerCase())
-              )
-              .map((e) => <CardProgrammazione key={e.id} spettacolo={e} />)}
-        </Row>
       </div>
+      {roles?.some((e) => {
+        if (e.id === 1) {
+          return true;
+        } else {
+          return false;
+        }
+      }) && (
+        <div className="ms-5 d-flex justify-content-center mb-3">
+          <ModaleAggiungiProgrammazione />
+
+          <CsvProgramma />
+        </div>
+      )}
+
+      {isError && (
+        <Alert variant="danger">Errore nel caricamento della pagina</Alert>
+      )}
+      <Row xs={1} xl={2} className="m-0">
+        {isLoading && (
+          <Spinner animation="border" className="m-auto" variant="secondary" />
+        )}
+        {programmazione &&
+          programmazione
+            .filter(
+              (e) =>
+                e.film?.titolo?.toLowerCase().includes(filter.toLowerCase()) ||
+                e.data.includes(filter) ||
+                e.sala.nome.toLowerCase().includes(filter.toLowerCase())
+            )
+            .map((e) => <CardProgrammazione key={e.id} spettacolo={e} />)}
+      </Row>
     </>
   );
 };
